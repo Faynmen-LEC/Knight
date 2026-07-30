@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>骑士迅游</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="topbar">
+        <h1 class="title">骑士迅游</h1>
+        <div class="controls">
+          <button id="undoBtn" class="md-btn">上一步</button>
+          <button id="retryBtn" class="md-btn">重试</button>
+          <button id="newBtn" class="md-btn primary">重玩</button>
+        </div>
+      </header>
+
+      <section class="board-card">
+        <div id="board" class="board" tabindex="0" aria-label="棋盘"></div>
+      </section>
+
+      <div id="status" class="status">移动: <span id="moveCount">0</span></div>
+
+      <div id="endModal" class="modal hidden">
+        <div class="modal-card">
+          <h2>游戏结束</h2>
+          <div class="modal-actions">
+            <button id="modalRetry" class="md-btn">继续重玩</button>
+            <button id="modalNew" class="md-btn primary">重新随机起点</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
