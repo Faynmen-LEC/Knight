@@ -76,7 +76,7 @@ function render() {
     for (const [r, c] of legal) {
         grid[r][c].classList.add('legal'); has = true;
     }
-    if (!has) checkEnd();
+    if (!has) checkEnd(legal.length === 0);
 }
 
 function getLegalMoves(r, c) {
@@ -120,9 +120,13 @@ function undo() {
     render();
 }
 
-function checkEnd() {
-    // no legal move from current
-    showEnd();
+function checkEnd(isStuck) {
+    if (!isStuck) return;
+    if (moves.length === BOARD_SIZE * BOARD_SIZE) {
+        showSuccess();
+    } else {
+        showEnd();
+    }
 }
 
 function showEnd() {
@@ -133,6 +137,17 @@ function hideEnd() {
     endModal.classList.add('hidden');
 }
 
+function showSuccess() {
+    alert('🎆');
+}
+
+function updateCellFontSize() {
+    const cell = boardEl.querySelector('.cell');
+    if (!cell) return;
+    const height = cell.clientHeight;
+    if (!height) return;
+    document.documentElement.style.setProperty('--cell-font-size', `${Math.round(height * 0.5)}px`);
+}
 
 undoBtn.addEventListener('click', () => { undo(); });
 retryBtn.addEventListener('click', () => { if (initialStart) setStart(initialStart); hideEnd(); });
@@ -145,3 +160,5 @@ createBoard();
 const start = randStart();
 initialStart = start.slice();
 setStart(start);
+updateCellFontSize();
+window.addEventListener('resize', updateCellFontSize);
