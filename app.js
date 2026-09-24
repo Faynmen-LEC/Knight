@@ -138,7 +138,7 @@ function hideEnd() {
 }
 
 function showSuccess() {
-    alert('🎆');
+    alert('就这？');
 }
 
 function updateCellFontSize() {
